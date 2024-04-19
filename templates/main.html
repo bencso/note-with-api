@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App Test</title>
+    <style>
+      *{
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      }
+      li a {
+        color: aliceblue;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body style="background-color: brown; color: aliceblue">
+    <form
+      action="/"
+      method="post"
+      style="
+        background-color: brown;
+        margin: auto auto;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+      "
+    >
+      <h1>Jegyzet</h1>
+      <label> Add meg a jegyzet címét (Ne használj a címhez ékezetet): </label>
+      <input
+        type="text"
+        name="title"
+        placeholder="Címe"
+        pattern="[A-Za-z]{1,30}"
+        required
+        style="padding: 10px;border-radius: .5rem;"
+      />
+      <label> Add meg a jegyzetet: </label>
+      <textarea
+        type="text"
+        name="element"
+        placeholder="Add meg a jegyzetet"
+        style="resize: vertical;border-radius: .5rem;"
+        rows="5"
+      ></textarea>
+      <p><button type="submit" style="padding: 10px;display: flex;margin: auto;border: 0;background-color: wheat;">Hozzáadás</button></p>
+    </form>
+    <ul>
+      {% for title in data["title"] %}
+      <form action="/delete?t={{title}}" method="post">
+        <li>
+          <a href="/search/{{title}}">{{ title }}</a>
+          <button type="submit" style="padding: 5px;margin-left: 10px;border: 0;background-color: wheat;">Törlés</button>
+        </li>
+      </form>
+      {% endfor %}
+    </ul>
+    <footer style="position: absolute;bottom: 0;">Created by: Bencso/Bábolnai Bence</footer>
+  </body>
+</html>
