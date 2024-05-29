@@ -14,6 +14,8 @@ from flask import Flask, redirect , request, make_response, render_template
 
 The application uses Flask for the web server, and several helper functions from Flask for handling requests and responses. These include redirecting users to different pages, accessing request data (like form parameters and cookies), creating HTTP responses, and rendering HTML templates.
 
+🇭🇺 Az alkalmazás Flask-ot használ a webkiszolgálóhoz, és a Flask számos segédfüggvényét a kérések és válaszok kezeléséhez. Ezek közé tartozik a felhasználók átirányítása különböző oldalakra, a kérési adatok (például űrlapparaméterek és cookie-k) elérése, HTTP-válaszok létrehozása és HTML-sablonok megjelenítése.
+
 ### Initialize Flask
 
 ```python
@@ -21,6 +23,9 @@ app = Flask(__name__)
 ```
 
 This line creates a new Flask web application.
+
+🇭🇺 Ez a sor egy új Flask webalkalmazást hoz létre.
+
 
 ### Routes and Handlers
 
@@ -36,9 +41,23 @@ There are five URL routes defined in this app:
 
 5. `@app.post("/delete")`: This route deletes a specified note by setting its cookie value to an empty string and its expiration date to 0.
 
+🇭🇺 Ebben az alkalmazásban öt URL-útvonal van definiálva:
+
+1. `@app.get("/")`: Ez az útvonal az összes jegyzetet megjeleníti a címek és tartalmak cookie-kból történő beolvasásával és a main.html sablonba történő átadásával.
+
+2. `@app.get("/titles")`: Ez az útvonal visszaadja az összes jegyzet címét.
+
+3. `@app.get("/search/<címek>")`: Ez az útvonal egy adott jegyzet tartalmát jeleníti meg. A jegyzet címe az URL elérési útvonalában van megadva.
+
+4. `@app.post("/")`: Ez az útvonal kezeli az új jegyzet létrehozásához szükséges űrlap beküldését. Új cookie-t állít be, amelynek kulcsa a jegyzet címe, értéke pedig a jegyzet tartalma.
+
+5. `@app.post("/delete")`: Ez az útvonal törli a megadott jegyzetet úgy, hogy a cookie értékét üres karakterláncra, a lejárati dátumát pedig 0-ra állítja.
+
 ## Running the App
 
 To run this app, you need to have Flask installed in your Python environment. You can then run the app by running the Python file in your terminal.
+
+🇭🇺 Az alkalmazás futtatásához a Python környezetedben telepített Flask-ra van szükséged. Ezután az alkalmazást a Python fájl futtatásával futtathatja a termináljában.
 
 ## Notes
 
@@ -46,3 +65,9 @@ To run this app, you need to have Flask installed in your Python environment. Yo
 - The application uses the `render_template` function to render HTML templates, which should be stored in a `templates` directory in the same directory as the Python script.
 - To delete notes, the note title is passed as a query parameter in the delete route.
 - Notes are displayed in the main route ("/") and can also be searched for using the search route.
+
+🇭🇺 
+- Az alkalmazás cookie-kat használ a jegyzetek tárolására, ami azt jelenti, hogy a jegyzetek a felhasználó böngészőjében tárolódnak, és mindaddig fennmaradnak a munkameneteken keresztül, amíg a felhasználó nem törli a cookie-kat vagy nem törli az adott jegyzetet.
+- Az alkalmazás a `render_template` függvényt használja a HTML sablonok megjelenítésére, amelyeket a Python szkripttel azonos könyvtárban lévő `templates` könyvtárban kell tárolni.
+- A jegyzetek törléséhez a jegyzet címe a törlési útvonalban lekérdezési paraméterként kerül átadásra.
+- A jegyzetek a fő útvonalon ("/") jelennek meg, és a keresési útvonalon is kereshetők.
