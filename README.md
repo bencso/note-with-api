@@ -2,6 +2,8 @@
 
 This application uses the Flask web framework to create a simple notes app. The notes are stored in cookies, so they persist across user sessions until the user decides to delete a note or clear their browser cookies.
 
+🇭🇺 Ez az alkalmazás a Flask webes keretrendszert használja egy egyszerű jegyzetalkalmazás létrehozásához. A jegyzeteket sütik tárolják, így azok a felhasználói munkameneteken keresztül megmaradnak, amíg a felhasználó úgy nem dönt, hogy törli a jegyzetet vagy törli a böngésző sütiket.
+
 ## Code Overview
 
 ### Imports
