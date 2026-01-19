@@ -1,4 +1,4 @@
-# note-with-api 📝🍪
+# Note with API 📝🍪
 
 > Flask-alapú jegyzetalkalmazás cookie tárolással - Iskolai API gyakorlás
 
