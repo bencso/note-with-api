@@ -1,73 +1,84 @@
-# Flask Notes App Documentation
+# note-with-api 📝🍪
 
-This application uses the Flask web framework to create a simple notes app. The notes are stored in cookies, so they persist across user sessions until the user decides to delete a note or clear their browser cookies.
+> Flask-alapú jegyzetalkalmazás cookie tárolással - Iskolai API gyakorlás
 
-🇭🇺 Ez az alkalmazás a Flask webes keretrendszert használja egy egyszerű jegyzetalkalmazás létrehozásához. A jegyzeteket sütik tárolják, így azok a felhasználói munkameneteken keresztül megmaradnak, amíg a felhasználó úgy nem dönt, hogy törli a jegyzetet vagy törli a böngésző sütiket.
+## 🎯 Projekt célja
 
-## Code Overview
+Ez egy egyszerű jegyzetalkalmazás, amely Flask keretrendszert használ, és kifejezetten API gyakorlás céljából készült iskolai projektként. A jegyzetek cookie-kban tárolódnak, így megmaradnak a böngésző újraindítása után is, amíg a felhasználó nem törli őket.
 
-### Imports
+## ✨ Funkciók
 
-```python
-from flask import Flask, redirect , request, make_response, render_template
-```
+- 📝 **Jegyzet létrehozása** - Cím és tartalom megadásával új jegyzet rögzítése
+- 📋 **Jegyzetek listázása** - Összes mentett jegyzet megtekintése
+- 🔍 **Jegyzet keresése** - Konkrét jegyzet megkeresése cím alapján
+- 🗑️ **Jegyzet törlése** - Egyedi jegyzet eltávolítása a cookie-kból
+- 🍪 **Cookie alapú tárolás** - Adatok megmaradása böngésző-sessionon keresztül
 
-The application uses Flask for the web server, and several helper functions from Flask for handling requests and responses. These include redirecting users to different pages, accessing request data (like form parameters and cookies), creating HTTP responses, and rendering HTML templates.
+## 🛠️ Technológiák
 
-🇭🇺 Az alkalmazás Flask-ot használ a webkiszolgálóhoz, és a Flask számos segédfüggvényét a kérések és válaszok kezeléséhez. Ezek közé tartozik a felhasználók átirányítása különböző oldalakra, a kérési adatok (például űrlapparaméterek és cookie-k) elérése, HTTP-válaszok létrehozása és HTML-sablonok megjelenítése.
+- **Flask** - Python framework
+- **Python** - Programozási nyelv
+- **HTML templates** - Jinja2 template engine
 
-### Initialize Flask
+## 🔧 API útvonalak
 
-```python
-app = Flask(__name__)
-```
+### GET `/`
+Az összes jegyzet megjelenítése a főoldalon. A címek és tartalmak cookie-kból töltődnek be és kerülnek átadásra a `main.html` sablonnak.
 
-This line creates a new Flask web application.
+### GET `/titles`
+Az összes jegyzet címének visszaadása.
 
-🇭🇺 Ez a sor egy új Flask webalkalmazást hoz létre.
+### GET `/search/<titles>`
+Konkrét jegyzet tartalmának megjelenítése. A jegyzet címe az URL-ben kerül megadásra.
 
+### POST `/`
+Új jegyzet létrehozása. A jegyzet címe lesz a cookie kulcsa, a tartalom pedig az értéke.
 
-### Routes and Handlers
+### POST `/delete`
+Megadott jegyzet törlése úgy, hogy a cookie értékét üres stringre állítja és a lejárati dátumot 0-ra.
 
-There are five URL routes defined in this app:
+## 💭 Fejlesztési folyamat
 
-1. `@app.get("/")`: This route displays all notes by reading the titles and contents from the cookies and passing them to the main.html template.
+Ez egy iskolai projekt volt, amelynek célja a Flask framework és az API-k működésének gyakorlása. A cookie-alapú tárolás egyszerű megoldást kínál adatmegőrzésre adatbázis nélkül, így tökéletes oktatási célokra.
 
-2. `@app.get("/titles")`: This route returns all note titles.
+## 🎓 Tanulási célok
 
-3. `@app.get("/search/<titles>")`: This route displays a specific note's content. The note title is provided in the URL path.
+A projekt során gyakoroltam:
+- Flask framework használata
+- RESTful API útvonalak tervezése és implementálása
+- HTTP kérések és válaszok kezelése
+- Cookie-alapú adattárolás
+- HTML template renderelés (Jinja2)
+- Python webfejlesztés alapjai
 
-4. `@app.post("/")`: This route handles the form submission for creating a new note. It sets a new cookie with the note title as the key and the note content as the value.
+## 🚀 Futtatás
 
-5. `@app.post("/delete")`: This route deletes a specified note by setting its cookie value to an empty string and its expiration date to 0.
+A projekt futtatásához szükséges lépések:
 
-🇭🇺 Ebben az alkalmazásban öt URL-útvonal van definiálva:
+1. Flask telepítése: `pip install flask`
+2. Python fájl futtatása: `python app.py`
+3. Böngészőben megnyitni: `http://localhost:5000`
 
-1. `@app.get("/")`: Ez az útvonal az összes jegyzetet megjeleníti a címek és tartalmak cookie-kból történő beolvasásával és a main.html sablonba történő átadásával.
+**Megjegyzés:** A HTML sablonokat a `templates` mappában kell tárolni, a Python scripttel azonos könyvtárban.
 
-2. `@app.get("/titles")`: Ez az útvonal visszaadja az összes jegyzet címét.
+## 🤝 Közreműködés
 
-3. `@app.get("/search/<címek>")`: Ez az útvonal egy adott jegyzet tartalmát jeleníti meg. A jegyzet címe az URL elérési útvonalában van megadva.
+Ez egy lezárt iskolai projekt, amely API gyakorlás céljából készült.
 
-4. `@app.post("/")`: Ez az útvonal kezeli az új jegyzet létrehozásához szükséges űrlap beküldését. Új cookie-t állít be, amelynek kulcsa a jegyzet címe, értéke pedig a jegyzet tartalma.
+---
 
-5. `@app.post("/delete")`: Ez az útvonal törli a megadott jegyzetet úgy, hogy a cookie értékét üres karakterláncra, a lejárati dátumát pedig 0-ra állítja.
+**Státusz:** ✅ Befejezett
 
-## Running the App
+---
 
-To run this app, you need to have Flask installed in your Python environment. You can then run the app by running the Python file in your terminal.
+## 💭 Megjegyzések
 
-🇭🇺 Az alkalmazás futtatásához a Python környezetedben telepített Flask-ra van szükséged. Ezután az alkalmazást a Python fájl futtatásával futtathatja a termináljában.
+Ez az alkalmazás kifejezetten Flask és API gyakorlás céljából készült iskolai feladatként. A cookie-alapú tárolás egyszerű, de hatékony megoldást nyújt kis mennyiségű adat böngészőben történő megőrzésére, adatbázis használata nélkül.
 
-## Notes
+---
 
-- The application uses cookies to store notes, which means that the notes are stored in the user's browser and persist across sessions until the user clears their cookies or deletes a specific note.
-- The application uses the `render_template` function to render HTML templates, which should be stored in a `templates` directory in the same directory as the Python script.
-- To delete notes, the note title is passed as a query parameter in the delete route.
-- Notes are displayed in the main route ("/") and can also be searched for using the search route.
+**⭐ Ha tetszik a projekt, örülök egy csillagnak!**
 
-🇭🇺 
-- Az alkalmazás cookie-kat használ a jegyzetek tárolására, ami azt jelenti, hogy a jegyzetek a felhasználó böngészőjében tárolódnak, és mindaddig fennmaradnak a munkameneteken keresztül, amíg a felhasználó nem törli a cookie-kat vagy nem törli az adott jegyzetet.
-- Az alkalmazás a `render_template` függvényt használja a HTML sablonok megjelenítésére, amelyeket a Python szkripttel azonos könyvtárban lévő `templates` könyvtárban kell tárolni.
-- A jegyzetek törléséhez a jegyzet címe a törlési útvonalban lekérdezési paraméterként kerül átadásra.
-- A jegyzetek a fő útvonalon ("/") jelennek meg, és a keresési útvonalon is kereshetők.
+***
+
+Kész! Folytassuk a következővel? 🚀
