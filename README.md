@@ -63,7 +63,7 @@ A projekt futtatásához szükséges lépések:
 
 ## 🤝 Közreműködés
 
-Ez egy lezárt iskolai projekt, amely API gyakorlás céljából készült.
+Ez egy lezárt iskolai projekt.
 
 ---
 
