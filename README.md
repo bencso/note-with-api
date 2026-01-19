@@ -61,9 +61,9 @@ A projekt futtatásához szükséges lépések:
 
 **Megjegyzés:** A HTML sablonokat a `templates` mappában kell tárolni, a Python scripttel azonos könyvtárban.
 
-## 🤝 Közreműködés
+## 📄 Licensz
 
-Ez egy lezárt iskolai projekt.
+MIT License - Szabadon használható és módosítható
 
 ---
 
